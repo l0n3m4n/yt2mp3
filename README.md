@@ -1,3 +1,5 @@
+<p align="right"><img src="https://visitor-badge.laobi.icu/badge?page_id=l0n3m4n" alt="badge"/></p>
+
 # 🎧 yt2mp3     
 📚 Table of Contents
 - 📜 [Description](#-description)
