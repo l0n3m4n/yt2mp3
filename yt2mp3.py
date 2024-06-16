@@ -30,7 +30,7 @@ def download_video(url, output_path):
         response = requests.get(stream.url, stream=True)
         with open(os.path.join(output_path, 'temp_video.mp4'), 'wb') as f:
             total_size = int(response.headers.get('content-length', 0))
-            with tqdm(total=total_size, unit='B', unit_scale=True, desc=f"{colors.GREEN}Downloading{colors.RESET}", ascii=True) as pbar:
+            with tqdm(total=total_size, unit='B', unit_scale=True, desc=f"{colors.GREEN}Progress{colors.RESET}", ascii=True) as pbar:
                 for chunk in response.iter_content(chunk_size=1024):
                     if chunk:
                         f.write(chunk)
@@ -67,17 +67,17 @@ def convert_to_mp3(video_path, output_path):
         audio = video.audio
         duration = video.duration
 
-        print(f"{colors.CYAN}🎵 Converting to MP3...{colors.RESET}")
+        print(f"{colors.CYAN}🔄 Converting to MP3...{colors.RESET}")
 
         # Call SuppressOutput class to suppress MoviePy output.
-        with SuppressOutput(), tqdm(total=duration, unit='s', desc=f"{colors.GREEN}Converting{colors.RESET}", ascii=True) as pbar:
+        with SuppressOutput(), tqdm(total=duration, unit='s', desc=f"{colors.GREEN}Progress{colors.RESET}", ascii=True) as pbar:
             def update_progress(current_time):
                 pbar.update(current_time - pbar.n)
 
             # Write audio to file
             audio.write_audiofile(output_path, verbose=False)
 
-        print(f"{colors.CYAN}💽 Conversion complete. MP3 saved at: {output_path}{colors.RESET}")
+        print(f"{colors.CYAN}🎧 Conversion complete. MP3 saved at: {output_path}{colors.RESET}")
         return True
     except (OSError, IOError, FileNotFoundError) as e:
         print(f"Error converting to MP3: {e}")
