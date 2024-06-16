@@ -127,7 +127,6 @@ def main(url, output_filename):
         print(f"{colors.RED}Error deleting temporary file: {e}{colors.RESET}")
 
 if __name__ == "__main__":
-
     # yt2mp3 banner
     print(f"{colors.CYAN}", end="")     
     print(r'''                                       
@@ -139,7 +138,6 @@ if __name__ == "__main__":
     `---'                             `--'                                                                        
             💻 ALDrin / ⚔️ l0n3m4n / ⚙️ v1.0.1                                                                        
 ''', end="")                                    
-    
     print(f"{colors.RESET}")
     parser = argparse.ArgumentParser(description='Download a YouTube video and convert to MP3.',
                                      epilog='Example usage: python3 yt2mp3.py --url https://www.youtube.com/watch?v=_sw22iEp9WU --output music_name.mp3')
