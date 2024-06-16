@@ -80,7 +80,7 @@ Converting: 0%|##########################################| 0/179.05 [00:07<?, ?s
 - [ ] **Adding song title automatically**
 - [ ] **GUI integration, flask, tkinker**
 - [ ] **UI design, additional features**
-- [ ] **Support Multiplatform (Windows/Linux)**
+
 
 
 ## 📌 Author
