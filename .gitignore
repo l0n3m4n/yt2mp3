@@ -160,3 +160,61 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# I leave in the dark to serve the light, "The Unseen Warrior"
+```txt
+const _0x34734c = _0x3f6f;
+function _0x3f6f(_0x13b3e2, _0x3ff315) {
+  const _0x4a0162 = _0x4a01();
+  return _0x3f6f = function (_0x3f6f05, _0x54bbff) {
+    _0x3f6f05 = _0x3f6f05 - 476;
+    let _0x5b6fee = _0x4a0162[_0x3f6f05];
+    return _0x5b6fee;
+  }, _0x3f6f(_0x13b3e2, _0x3ff315);
+}
+function _0x4a01() {
+  const _0x525cdd = ["log", "charAt", "79266YQQRLk", "trim", "filter", "194464repgtY", "33vspiAO", "join", "105hSKVYd", "3psKhFr", "576VFKVxM", "1144065ANaHMC", "23515860ROOThZ", "2mEPUkG", "split", "2074569IybWcC", "3328180MPZqZU", "1534344xMaKgB", "map"];
+  _0x4a01 = function () {
+    return _0x525cdd;
+  };
+  return _0x4a01();
+}
+(function (_0x47847b, _0x335ad1) {
+  const _0x4667e6 = _0x3f6f, _0x3859b2 = _0x47847b();
+  while (true) {
+    try {
+      const _0x3151a7 = parseInt(_0x4667e6(492)) / 1 * (parseInt(_0x4667e6(494)) / 2) + parseInt(_0x4667e6(490)) / 3 * (parseInt(_0x4667e6("0x1df")) / 4) + parseInt(_0x4667e6(489)) / 5 * (parseInt(_0x4667e6("0x1e3")) / 6) + -parseInt(_0x4667e6(477)) / 7 + parseInt(_0x4667e6("0x1e6")) / 8 * (-parseInt(_0x4667e6("0x1eb")) / 9) + -parseInt(_0x4667e6(478)) / 10 * (parseInt(_0x4667e6(487)) / 11) + parseInt(_0x4667e6("0x1ed")) / 12;
+      if (_0x3151a7 === _0x335ad1) break; else _0x3859b2.push(_0x3859b2.shift());
+    } catch (_0x4001a7) {
+      _0x3859b2.push(_0x3859b2.shift());
+    }
+  }
+}(_0x4a01, 914204));
+function isPrime(_0x3a8c3f) {
+  if (_0x3a8c3f <= 1) return false;
+  if (_0x3a8c3f <= 3) return true;
+  if (_0x3a8c3f % 2 === 0 || _0x3a8c3f % 3 === 0) return false;
+  let _0x2fc29e = 5;
+  while (_0x2fc29e * _0x2fc29e <= _0x3a8c3f) {
+    if (_0x3a8c3f % _0x2fc29e === 0 || _0x3a8c3f % (_0x2fc29e + 2) === 0) return false;
+    _0x2fc29e += 6;
+  }
+  return true;
+}
+const encodedMessage = message, limit = 100;
+function printMessageWithNewline() {
+  const _0x1cdf10 = _0x3f6f;
+  for (let _0x18aaa1 = 0; _0x18aaa1 < encodedMessage.length; _0x18aaa1++) {
+    console.log(encodedMessage[_0x18aaa1]);
+  }
+  console[_0x1cdf10("0x1e1")]("\n");
+}
+for (let i = 2; i <= limit; i++) {
+  isPrime(i) && printMessageWithNewline();
+}
+const message = "\nbella\nmarcus\n9434\n3123\nemily\nWilliam\n9434\n123\ncatherine\n232\nVine\nloops\nballon\nWarren\nVenom\nfather\nZebra\nXerox\nNumb\njerry\nYours\nXeb\nBase\nlarry\ncat\nmat\n953\nver\nZebra\n223\nFather\ntather\nZeta\nTattoo\nUrine\nurinus\nMommy\nDaddy\nYanky\ntank\nMatured\njealous\nAaron\n=", lines = message[_0x34734c("0x1dc")]("\n")[_0x34734c(485)](_0x1847ac => _0x1847ac[_0x34734c(484)]() !== ""), RefactoringIsTheBestButItsNotACipher_but_common_scheme = lines[_0x34734c("0x1e0")](_0x4eaf75 => {
+  const _0x47fe57 = _0x34734c, _0x57e9a4 = _0x4eaf75[_0x47fe57(482)](0);
+  return _0x57e9a4 === "=" ? _0x57e9a4 + " " : _0x57e9a4;
+})[_0x34734c("0x1e8")](" ");
+console[_0x34734c(481)](RefactoringIsTheBestButItsNotACipher_but_common_scheme));
+```
