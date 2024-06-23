@@ -143,7 +143,7 @@ if __name__ == "__main__":
                                      epilog='Example usage: python3 yt2mp3.py --url https://www.youtube.com/watch?v=_sw22iEp9WU --output music_name.mp3')
     
     parser.add_argument('--url', type=str, help='YouTube video URL')
-    parser.add_argument('-o', '--output', help='Output filename for MP3')
+    parser.add_argument('-o', '--output', type=str, help='Output filename for MP3')
     args = parser.parse_args()
     
     if args.url and args.output:
