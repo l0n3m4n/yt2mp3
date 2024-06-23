@@ -63,10 +63,10 @@ $ python3 yt2mp3.py --url https://www.youtube.com/watch?v=byCgohS7feE --output m
          💻 ALDrin / ⚔️ l0n3m4n / ⚙️ v1.0.1  
 
 📥 Downloading video...
-Downloading: 100%|############################| 3.67M/3.67M [00:00<00:00, 9.25MB/s]
+Progress: 100%|############################| 3.67M/3.67M [00:00<00:00, 9.25MB/s]
 💾 Video downloaded.
 🎵 Converting to MP3...
-Converting: 0%|##########################################| 0/179.05 [00:07<?, ?s/s]
+Progress: 0%|##########################################| 0/179.05 [00:07<?, ?s/s]
 💽 Conversion complete. MP3 saved at: ./music/music_title.mp3                                                                               
 🚮 Temporary video file deleted.
 ```
