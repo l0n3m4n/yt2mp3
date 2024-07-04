@@ -12,6 +12,8 @@
 ## Description  
 **yt2mp3** is a small project cli music downloader from youtube and convert into **mp3** using **pytube, moviepy and tqdm** python libraries.
 
+"Converting YouTube videos on third party websites carries high risks, hackers can embed executable code or scripts within MP3 files. When you play or open such file, it could potentially execute malicious code and compromise your system."
+
 ## 🛠️ Installation 
 >If virtual environment is not installed yet, follow to instruction below.
 ```bash
@@ -78,7 +80,7 @@ Progress: 0%|##########################################| 0/179.05 [00:07<?, ?s/s
 ## 📝 Todo
 - [x] **~~Adding progress bar~~**
 - [ ] **Add multiple URL**
-- [ ] **Extract mp3 Metadata**
+- [ ] **Extract mp3 Metadata (forensic purpose)**
 - [ ] **Adding song title automatically**
 - [ ] **GUI integration, flask, tkinker**
 - [ ] **UI design, additional features**
