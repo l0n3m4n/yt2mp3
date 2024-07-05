@@ -56,7 +56,7 @@ def download_video(url, output_path):
         if os.path.exists(temp_file):
             os.remove(temp_file)
         return False, None
-     
+
     except (RegexMatchError, VideoUnavailable) as e:
         print(f"{colors.RED}Error: {e}{colors.RESET}")
         return False, None
@@ -88,8 +88,6 @@ def convert_to_mp3(video_path, output_path):
         with SuppressOutput(), tqdm(total=duration, unit='s', desc=f"{colors.GREEN}Progress{colors.RESET}", ascii=True) as pbar:
             def update_progress(current_time):
                 pbar.update(current_time - pbar.n)
-
-     
             audio.write_audiofile(output_path, verbose=False)
 
         print(f"{colors.CYAN}🎧 Conversion complete. MP3 saved at: {output_path}{colors.RESET}")
@@ -107,13 +105,13 @@ def main(url, output_filename):
 
     download_success, mp4_output_path = download_video(url, output_dir)
     if not download_success:
-        print(f"{colors.RED}Failed to download video. Exiting...{colors.RESET}")
+        print(f"{colors.RED}\nFailed to download video.{colors.RESET}")
         return
 
     mp3_output_path = os.path.join(output_dir, output_filename)
 
     if not convert_to_mp3(mp4_output_path, mp3_output_path):
-        print(f"{colors.RED}Failed to convert video to MP3. Exiting...{colors.RESET}")
+        print(f"{colors.RED}Failed to convert video to MP3.{colors.RESET}")
         return
 
     
