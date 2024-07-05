@@ -52,7 +52,6 @@ def download_video(url, output_path):
         print(f"{colors.RED}Unexpected error occurred: {e}{colors.RESET}")
         return False, None
     
-# Removing Moviepy output
 class SuppressOutput:
     def __enter__(self):
         self.original_stdout = sys.stdout
