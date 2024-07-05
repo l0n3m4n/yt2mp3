@@ -42,9 +42,21 @@ def download_video(url, output_path):
                     if chunk:
                         f.write(chunk)
                         pbar.update(len(chunk))
-
+                    if pbar.n >= pbar.total:
+                        break
+                    if os.path.isfile(os.path.join(output_path, 'temp_video.mp4')):
+                        pass
         print(f"{colors.CYAN}💾 Video downloaded.{colors.RESET}")
-        return True, os.path.join(output_path, 'temp_video.mp4')  
+        return True, os.path.join(output_path, 'temp_video.mp4') 
+
+    except KeyboardInterrupt:
+        print(f'\n{colors.RED}Download interrupted by user, cleaning chunks...')
+
+        temp_file = os.path.join(output_path, 'temp_video.mp4')
+        if os.path.exists(temp_file):
+            os.remove(temp_file)
+        return False, None
+     
     except (RegexMatchError, VideoUnavailable) as e:
         print(f"{colors.RED}Error: {e}{colors.RESET}")
         return False, None
