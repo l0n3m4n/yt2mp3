@@ -33,36 +33,35 @@ $ pip install -r requirements.txt
 ```shell
 $ python3 yt2mp3.py -h, --help
 
-              ,--.   ,---.                  ,----.  
-    ,--. ,--.,-'  '-.'.-.  \,--,--,--.,---. '.-.  | 
-    \  '  / '-.  .-' .-' .'|        || .-. |  .' <  
-     \   '    |  |  /   '-.|  |  |  || '-' '/'-'  | 
-    .-'  /     `--'  '-----'`--`--`--'|  |-' `----'  
-    `---'                             `--'   
-         💻 ALDrin / ⚔️ l0n3m4n / ⚙️ v1.0.1  
+        __   ______                  ______ 
+.--.--.|  |_|__    |.--------.-----.|__    |
+|  |  ||   _|    __||        |  _  ||__    |
+|___  ||____|______||__|__|__|   __||______|
+|_____|                      |__|           
+                                                                         
+        Author: l0n3m4n | ⚙️  v1.1 
 
 usage: yt2mp3.py [-h] [--url URL] [-o OUTPUT]
 
 Download a YouTube video and convert to MP3.
 
 options:
-  -h, --help            show this help message and exit
-  --url URL             YouTube video URL
-  -o OUTPUT, --output OUTPUT
-                        Output filename for MP3
+  -h  --help        Show this help message and exit
+  -u  --url         YouTube video URL
+  -o  --output      Output filename for MP3
 
-Example usage: python3 yt2mp3.py --url https://www.youtube.com/watch?v=byCgohS7feE --output test.mp3
+Example usage: python3 yt2mp3.py -u https://www.youtube.com/watch?v=id -o music_title.mp3
 ```
 
 ```shell
 $ python3 yt2mp3.py --url https://www.youtube.com/watch?v=byCgohS7feE --output music_title.mp3
-              ,--.   ,---.                  ,----.  
-    ,--. ,--.,-'  '-.'.-.  \,--,--,--.,---. '.-.  | 
-    \  '  / '-.  .-' .-' .'|        || .-. |  .' <  
-     \   '    |  |  /   '-.|  |  |  || '-' '/'-'  | 
-    .-'  /     `--'  '-----'`--`--`--'|  |-' `----'  
-    `---'                             `--'   
-         💻 ALDrin / ⚔️ l0n3m4n / ⚙️ v1.0.1  
+        __   ______                  ______ 
+.--.--.|  |_|__    |.--------.-----.|__    |
+|  |  ||   _|    __||        |  _  ||__    |
+|___  ||____|______||__|__|__|   __||______|
+|_____|                      |__|           
+                                                                         
+        Author: l0n3m4n | ⚙️  v1.1 
 
 📥 Downloading video...
 Progress: 100%|############################| 3.67M/3.67M [00:00<00:00, 9.25MB/s]
