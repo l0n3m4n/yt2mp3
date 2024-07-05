@@ -77,7 +77,7 @@ Progress: 0%|##########################################| 0/179.05 [00:07<?, ?s/s
 ## 📝 Todo
 - [x] **~~Adding progress bar~~**
 - [ ] **Add multiple URL**
-- [ ] **Extract mp3 Metadata (forensic purpose)**
+- [ ] **Extract MP3 metadata for investigative purposes**
 - [ ] **Adding song title automatically**
 - [ ] **GUI integration, flask, tkinker**
 - [ ] **UI design, additional features**
