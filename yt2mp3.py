@@ -123,7 +123,7 @@ if __name__ == "__main__":
 ''', end="")                                    
     print(f"{colors.RESET}")
     parser = argparse.ArgumentParser(description='Download a YouTube video and convert to MP3.',
-                                     epilog=f'{colors.CYAN}Ex usage: python3 yt2mp3.py -u https://www.youtube.com/watch?v=id -o music_title.mp3{colors.RESET}')
+                                     epilog=f'{colors.CYAN}Ex: python3 yt2mp3.py -u https://www.youtube.com/watch?v=id -o music_title.mp3{colors.RESET}')
     
     parser.add_argument('-u','--url', type=str, help='YouTube video URL')
     parser.add_argument('-o', '--output', type=str, help='Output filename for MP3')
