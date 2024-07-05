@@ -15,16 +15,14 @@
 "Converting YouTube videos on third party websites carries high risks, hackers can embed executable code or scripts within MP3 files. When you play or open such file, it could potentially execute malicious code and compromise your system."
 
 ## 🛠️ Installation 
->If virtual environment is not installed yet, follow to instruction below.
+> Installing virtual environment
 ```bash
-# installing python3 virtual environment
 $ sudo apt install python3.11-venv
 $ python3 -m pip install virtualenv 
 $ python3 -m venv venv 
 ```
 
 ```bash
-# cloning repository
 $ git clone https://github.com/l0n3m4n/yt2mp3.git
 $ cd yt3mp3 && source venv/bin/activate
 $ pip install -r requirements.txt
