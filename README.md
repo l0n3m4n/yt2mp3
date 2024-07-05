@@ -48,7 +48,7 @@ options:
   -u  --url         YouTube video URL
   -o  --output      Output filename for MP3
 
-Example usage: python3 yt2mp3.py -u https://www.youtube.com/watch?v=id -o music_title.mp3
+Ex: python3 yt2mp3.py -u https://www.youtube.com/watch?v=id -o music_title.mp3
 ```
 
 ```shell
