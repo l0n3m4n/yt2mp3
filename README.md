@@ -1,10 +1,27 @@
-<div align="right">
-  <a href="https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Fl0n3m4n%2Fyt2mp3">
-    <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fl0n3m4n%2Fyt2mp3&label=Visitors&countColor=%2337d67a" />
-  </a>
-</div>
+<h1 align="center">
+  🎧 yt2mp3    
+</h2>
 
-# 🎧 yt2mp3     
+<p align="center">
+    <a href="https://www.facebook.com/l0n3m4n">
+        <img src="https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=Facebook&logoColor=white" alt="Facebook">
+    </a>
+      <a href="https://www.twitter.com/l0n3m4n">
+        <img src="https://img.shields.io/badge/Twitter-%23000000.svg?style=for-the-badge&logo=X&logoColor=white" alt="X">
+    </a>
+    <a href="https://medium.com/@l0n3m4n">
+        <img src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" alt="Medium">
+    </a>
+    <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python">
+    </a>
+    <a href="https://www.kali.org/">
+    <img src="https://img.shields.io/badge/Kali-268BEE?style=for-the-badge&logo=kalilinux&logoColor=white" alt="Kali">      
+    </a>
+</p>
+
+
+ 
 📚 Table of Contents
 - 📜 [Description](#-description)
 - 🛠️ [Installation](#-installation)
@@ -81,18 +98,8 @@ Progress: 0%|##########################################| 0/179.05 [00:07<?, ?s/s
 ## 📝 Todo
 - [x] **~~Adding progress bar~~**
 - [ ] **Add multiple URL**
-- [ ] **Extract MP3 metadata for investigative purposes**
+- [ ] **Extract MP3 metadata**
 - [ ] **Adding song title automatically**
-- [ ] **GUI integration, flask, tkinker**
-- [ ] **UI design, additional features**
-
-
-
-## 📌 Author
-- [Facebook](https://facebook.com/l0n3m4n)
-- [Twitter (X)](https://twitter.com/l0n3m4n)
-- [Medium](https://medium.com/l0n3m4n)
-- [Website](https://l0n3m4n.github.io)
 
 ## 👨🏾‍⚖️ License
 This project is under terms of the [MIT License](LICENSE). For fixing Bugs, create [issue](https://github.com/l0n3m4n/yt2mp3/issues/new)
