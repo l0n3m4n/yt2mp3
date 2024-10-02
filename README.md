@@ -68,11 +68,11 @@ options:
   -u  --url         YouTube video URL
   -o  --output      Output filename for MP3
 
-Ex: python3 yt2mp3.py -u https://www.youtube.com/watch?v=id -o music_title.mp3
+Ex: python3 yt2mp3.py -u https://www.youtube.com/watch?v=dQw4w9WgXcQ -o rick_astley.mp3
 ```
 
 ```shell
-$ python3 yt2mp3.py --url https://www.youtube.com/watch?v=byCgohS7feE --output music_title.mp3
+$ python3 yt2mp3.py --url https://www.youtube.com/watch?v=dQw4w9WgXcQ -o music_title.mp3
         __   ______                  ______ 
 .--.--.|  |_|__    |.--------.-----.|__    |
 |  |  ||   _|    __||        |  _  ||__    |
