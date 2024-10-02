@@ -30,8 +30,7 @@ def download_video(url, output_path):
     try:
         yt = YouTube(url)
         stream = yt.streams.filter(file_extension='mp4').first()
-        #total_bytes = stream.filesize
-        
+
         print(f"{colors.CYAN}📥 Downloading video...{colors.RESET}")
 
         response = requests.get(stream.url, stream=True)
@@ -42,10 +41,6 @@ def download_video(url, output_path):
                     if chunk:
                         f.write(chunk)
                         pbar.update(len(chunk))
-                    if pbar.n >= pbar.total:
-                        break
-                    if os.path.isfile(os.path.join(output_path, 'temp_video.mp4')):
-                        pass
         print(f"{colors.CYAN}💾 Video downloaded.{colors.RESET}")
         return True, os.path.join(output_path, 'temp_video.mp4') 
 
@@ -84,7 +79,6 @@ def convert_to_mp3(video_path, output_path):
 
         print(f"{colors.CYAN}🔄 Converting to MP3...{colors.RESET}")
 
-        
         with SuppressOutput(), tqdm(total=duration, unit='s', desc=f"{colors.GREEN}Progress{colors.RESET}", ascii=True) as pbar:
             def update_progress(current_time):
                 pbar.update(current_time - pbar.n)
@@ -114,7 +108,6 @@ def main(url, output_filename):
         print(f"{colors.RED}Failed to convert video to MP3.{colors.RESET}")
         return
 
-    
     try:
         os.remove(mp4_output_path)
         print(f"{colors.CYAN}🚮 Temporary video file deleted.{colors.RESET}")
@@ -129,14 +122,14 @@ if __name__ == "__main__":
 |  |  ||   _|    __||        |  _  ||__    |
 |___  ||____|______||__|__|__|   __||______|
 |_____|                      |__|                                                                                  
-        Author: l0n3m4n | ⚙️  v1.1                                                                        
+        Author: l0n3m4n | ⚙️  v1.3                                                                        
 ''', end="")                                    
     print(f"{colors.RESET}")
     parser = argparse.ArgumentParser(description='Download a YouTube video and convert to MP3.',
                                      epilog=f'{colors.CYAN}Ex:   python3 yt2mp3.py -u https://www.youtube.com/watch?v=id -o music_title.mp3{colors.RESET}')
     
     parser.add_argument('-u','--url', type=str, required=True, metavar='', help='YouTube video URL')
-    parser.add_argument('-o', '--output', type=str,required=True, metavar='', help='Output filename for MP3')
+    parser.add_argument('-o', '--output', type=str, required=True, metavar='', help='Output filename for MP3')
     args = parser.parse_args()
     
     if args.url and args.output:
@@ -148,5 +141,3 @@ if __name__ == "__main__":
             print(f"\n{colors.RED}An error occurred: {e}{colors.RESET}")
     else:
         print(f"{colors.RED}Please provide both --url and --output arguments.{colors.RESET}")
-
-
