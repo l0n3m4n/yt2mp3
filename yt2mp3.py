@@ -3,17 +3,14 @@
 import argparse
 import os
 import sys
-import requests
-from pytube import YouTube
-from pytube.exceptions import RegexMatchError, VideoUnavailable
+import subprocess
 from moviepy.editor import VideoFileClip
 from tqdm import tqdm
-
 
 ####################################
 # Author: l0n3m4n                  #
 # Description: Youtube converter   # 
-# Version: 1.1                     #
+# Version: 1.3.0 (yt-dlp)          #
 ####################################
 
 
@@ -28,37 +25,32 @@ class colors:
 
 def download_video(url, output_path):
     try:
-        yt = YouTube(url)
-        stream = yt.streams.filter(file_extension='mp4').first()
+        print(f"{colors.CYAN}📥 Downloading video using yt-dlp...{colors.RESET}")
 
-        print(f"{colors.CYAN}📥 Downloading video...{colors.RESET}")
+        temp_video_path = os.path.join(output_path, 'temp_video.mp4')
+        command = [
+            "yt-dlp",
+            "-f", "mp4",
+            "-o", temp_video_path,
+            url
+        ]
 
-        response = requests.get(stream.url, stream=True)
-        with open(os.path.join(output_path, 'temp_video.mp4'), 'wb') as f:
-            total_size = int(response.headers.get('content-length', 0))
-            with tqdm(total=total_size, unit='B', unit_scale=True, desc=f"{colors.GREEN}Progress{colors.RESET}", ascii=True) as pbar:
-                for chunk in response.iter_content(chunk_size=1024):
-                    if chunk:
-                        f.write(chunk)
-                        pbar.update(len(chunk))
+        result = subprocess.run(command, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"{colors.RED}yt-dlp failed:\n{result.stderr}{colors.RESET}")
+            return False, None
+
         print(f"{colors.CYAN}💾 Video downloaded.{colors.RESET}")
-        return True, os.path.join(output_path, 'temp_video.mp4') 
+        return True, temp_video_path
 
     except KeyboardInterrupt:
-        print(f'\n{colors.RED}Download interrupted by user, cleaning chunks...')
-
-        temp_file = os.path.join(output_path, 'temp_video.mp4')
-        if os.path.exists(temp_file):
-            os.remove(temp_file)
-        return False, None
-
-    except (RegexMatchError, VideoUnavailable) as e:
-        print(f"{colors.RED}Error: {e}{colors.RESET}")
+        print(f'\n{colors.RED}Download interrupted by user.{colors.RESET}')
         return False, None
     except Exception as e:
         print(f"{colors.RED}Unexpected error occurred: {e}{colors.RESET}")
         return False, None
-    
+
+
 class SuppressOutput:
     def __enter__(self):
         self.original_stdout = sys.stdout
@@ -67,6 +59,7 @@ class SuppressOutput:
     def __exit__(self, exc_type, exc_val, exc_tb):
         sys.stdout.close()
         sys.stdout = self.original_stdout
+
 
 def convert_to_mp3(video_path, output_path):
     try:
@@ -87,11 +80,12 @@ def convert_to_mp3(video_path, output_path):
         print(f"{colors.CYAN}🎧 Conversion complete. MP3 saved at: {output_path}{colors.RESET}")
         return True
     except (OSError, IOError, FileNotFoundError) as e:
-        print(f"Error converting to MP3: {e}")
+        print(f"{colors.RED}Error converting to MP3: {e}{colors.RESET}")
         return False
     except Exception as e:
-        print(f"Unexpected error occurred during conversion: {e}")
+        print(f"{colors.RED}Unexpected error occurred during conversion: {e}{colors.RESET}")
         return False
+
 
 def main(url, output_filename):
     output_dir = './music'
@@ -114,6 +108,7 @@ def main(url, output_filename):
     except Exception as e:
         print(f"{colors.RED}Error deleting temporary file: {e}{colors.RESET}")
 
+
 if __name__ == "__main__":
     print(f"{colors.CYAN}", end="")     
     print(r'''                                       
@@ -125,15 +120,18 @@ if __name__ == "__main__":
         Author: l0n3m4n | ⚙️  v1.3                                                                        
 ''', end="")                                    
     print(f"{colors.RESET}")
-    parser = argparse.ArgumentParser(description='Download a YouTube video and convert to MP3.',
-                                     epilog=f'{colors.CYAN}Ex:   python3 yt2mp3.py -u https://www.youtube.com/watch?v=id -o music_title.mp3{colors.RESET}')
+
+    parser = argparse.ArgumentParser(
+        description='Download a YouTube video and convert to MP3.',
+        epilog=f'{colors.CYAN}Ex:   python3 yt2mp3.py -u https://www.youtube.com/watch?v=id -o music_title.mp3{colors.RESET}'
+    )
     
-    parser.add_argument('-u','--url', type=str, required=True, metavar='', help='YouTube video URL')
+    parser.add_argument('-u', '--url', type=str, required=True, metavar='', help='YouTube video URL')
     parser.add_argument('-o', '--output', type=str, required=True, metavar='', help='Output filename for MP3')
     args = parser.parse_args()
     
     if args.url and args.output:
-        try:    
+        try:
             main(args.url, args.output)
         except KeyboardInterrupt:
             print(f"\n{colors.RED}Process interrupted by user.{colors.RESET}")
