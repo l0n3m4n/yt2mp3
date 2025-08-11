@@ -96,9 +96,9 @@ Progress: 0%|##########################################| 0/179.05 [00:07<?, ?s/s
 
 ## 📝 Todo
 - [x] **~~Adding progress bar~~**
-- [ ] **Add multiple URL**
-- [ ] **Extract MP3 metadata**
-- [ ] **Adding song title automatically**
+- [ ] **Add multiple URL via command**
+- [ ] **Add multiple URL in a one list e.q `music_list.txt`**
+ 
 
 ## 👨🏾‍⚖️ License
 This project is under terms of the [MIT License](LICENSE). For fixing Bugs, create [issue](https://github.com/l0n3m4n/yt2mp3/issues/new)
