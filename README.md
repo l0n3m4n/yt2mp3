@@ -71,7 +71,7 @@ $ python3 yt2mp3.py -h, --help
 |___  ||____|______||__|__|__|   __||______|
 |_____|                      |__|           
                                                                          
-        Author: l0n3m4n | ⚙️  v1.1 
+        Author: l0n3m4n | ⚙️  v1.4.0
 
 usage: yt2mp3.py [-h] [--url URL] [-o OUTPUT]
 
