@@ -1,4 +1,1 @@
-#pytube==15.0.0 deprecated, use yt-dlp instead
-moviepy==1.0.3 
-tqdm==4.66.4 
-yt-dlp>=2023.07.06
+yt-dlp
