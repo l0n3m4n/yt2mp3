@@ -93,12 +93,13 @@ $ python3 yt2mp3.py -u "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -o /save/pa
 |___  ||____|______||__|__|__|   __||______|           
 |_____|                      |__|           
                                                                          
-        Author: l0n3m4n | ⚙️  v1.4 
+        Author: l0n3m4n | ⚙️  v1.4.0
                                                                          
-📥 Downloading and converting to MP3 using yt-dlp...
+📥 Downloading and converting to MP3
 [download]  35.1% of   73.32MiB at    2.84MiB/s ETA 00:16
 🎧 Conversion complete. MP3 saved at: ./music/music_title.mp3
-```## 💁 References
+```
+## 💁 References
 - [**yt-dlp**](https://github.com/yt-dlp/yt-dlp) is a youtube-dl fork with additional features and fixes. It's used for downloading and converting videos.
 - [**FFmpeg**](https://ffmpeg.org/) is a complete, cross-platform solution to record, convert and stream audio and video. `yt-dlp` uses it for post-processing.
 
