@@ -100,7 +100,6 @@ Examples:
 
 ## 💁 References
 - [**yt-dlp**](https://github.com/yt-dlp/yt-dlp) is a youtube-dl fork with additional features and fixes. It's used for downloading and converting videos.
-- [**FFmpeg**](https://ffmpeg.org/) is a complete, cross-platform solution to record, convert and stream audio and video. `yt-dlp` uses it for post-processing.
 
 ## 📝 Todo
 - [x] **Added progress bar (via yt-dlp's native output)**
