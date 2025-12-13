@@ -1,5 +1,5 @@
 <h1 align="center">
-  🎧 yt2mp3    
+  🎧 yt2mp3
 </h2>
 
 <p align="center">
@@ -21,93 +21,96 @@
 </p>
 <br>
 
-## 📜 Description  
-**yt2mp3** is a small project cli music downloader from youtube and convert into **mp3** using the powerful **yt-dlp** library.
+## 📜 Description
+**yt2mp3** is a small project cli music downloader from youtube and convert into various audio formats using the powerful **yt-dlp** library.
 
 "Converting YouTube videos on third party websites carries high risks, hackers can embed executable code or scripts within MP3 files. When you play or open such file, it could potentially execute malicious code and compromise your system."
 
- 
-📚 Table of Contents
+## ✨ Features
+- **Automatic Title Extraction**: Automatically uses the video title as the filename.
+- **Playlist Support**: Download entire YouTube playlists.
+- **Format Selection**: Choose from various audio formats like mp3, flac, wav.
+- **Quality Control**: Specify the audio quality.
+- **Metadata Embedding**: Embeds thumbnail and other metadata into the audio file.
+- **Duplicate Check**: Avoids re-downloading already existing files.
+- **Interactive Mode**: A user-friendly interactive mode for a better experience.
+
+## 📚 Table of Contents
 - 📜 [Description](#-description)
+- ✨ [Features](#-features)
 - 🛠️ [Installation](#-installation)
 - ⚙️ [Usage](#-usage)
 - 💁 [References](#-references)
- 
+- 📝 [Todo](#-todo)
+- 👨🏾‍⚖️ [License](#-license)
 
-## 🛠️ Installation 
-> Installing virtual environment
+## 🛠️ Installation
+> dependencies (python3 latest)
 ```bash
-$ sudo apt install python3.11-venv
-$ python3 -m pip install virtualenv 
-$ python3 -m venv venv 
+sudo apt install python3.11-venv
+python3 -m venv venv-yt2mp3
 ```
 
 ```bash
-$ git clone https://github.com/l0n3m4n/yt2mp3.git
-$ cd yt2mp3 && source venv/bin/activate
-$ pip install -r requirements.txt
+git clone https://github.com/l0n3m4n/yt2mp3.git
+cd yt2mp3 && source venv-yt2mp3/bin/activate
+pip install -r requirements.txt
 ```
 
-> **System Dependencies:**
-> `yt-dlp` relies on `ffmpeg` for audio extraction and conversion. Please ensure it's installed on your system.
->
-> **For Debian/Ubuntu-based systems:**
-> ```bash
-> sudo apt update
-> sudo apt install ffmpeg
-> ```
->
-> **For Fedora/RHEL-based systems:**
-> ```bash
-> sudo dnf install ffmpeg
-> ```
-## ⚙️ Usage 
-```shell
-$ python3 yt2mp3.py -h, --help
+## ⚙️ Usage
+```bash
+$ python3 yt2mp3.py --help
 
-        __   ______                  ______ 
+        __   ______                  ______
 .--.--.|  |_|__    |.--------.-----.|__    |
 |  |  ||   _|    __||        |  _  ||__    |
 |___  ||____|______||__|__|__|   __||______|
-|_____|                      |__|           
-                                                                         
-        Author: l0n3m4n | ⚙️  v1.4.0
+|_____|                      |__|
+        Author: l0n3m4n | ⚙️  v1.5.0
 
-usage: yt2mp3.py [-h] [--url URL] [-o OUTPUT]
+usage: yt2mp3.py [-h] [-u URL] [-o ] [-f FORMAT] [-q QUALITY] [-i]
 
 Download a YouTube video and convert to MP3.
 
 options:
-  -h  --help        Show this help message and exit
-  -u  --url         YouTube video URL
-  -o  --output      Output filename for MP3
+  -h, --help             show this help message and exit
+  -u, --url URL          YouTube video URL
+  -o, --output           Output filename for MP3 (default: video title)
+  -f, --format FORMAT    Audio format (e.g., mp3, flac, wav)
+  -q, --quality QUALITY  Audio quality (e.g., 192, 320)
+  -i, --interactive      Enable interactive mode
 
-Ex: python3 yt2mp3.py -u "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -o rick_astley.mp3
+Examples:
+  Download a single video:
+    yt2mp3.py -u "https://www.youtube.com/watch?v=id"
+
+  Download a single video with a specific filename:
+    yt2mp3.py -u "https://www.youtube.com/watch?v=id" -o "my_song.mp3"
+
+  Download a playlist to the default music directory:
+    yt2mp3.py -u "https://www.youtube.com/playlist?list=id"
+
+  Download a playlist to a specific directory:
+    yt2mp3.py -u "https://www.youtube.com/playlist?list=id" -o "my_playlist"
+
+  Download a video in FLAC format with 320 quality:
+    yt2mp3.py -u "https://www.youtube.com/watch?v=id" -f flac -q 320
 ```
 
-```shell
-$ python3 yt2mp3.py -u "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -o /save/path/music_title.mp3
-        __   ______                  ______ 
-.--.--.|  |_|__    |.--------.-----.|__    |
-|  |  ||   _|    __||        |  _  ||__    |
-|___  ||____|______||__|__|__|   __||______|           
-|_____|                      |__|           
-                                                                         
-        Author: l0n3m4n | ⚙️  v1.4.0
-                                                                         
-📥 Downloading and converting to MP3
-[download]  35.1% of   73.32MiB at    2.84MiB/s ETA 00:16
-🎧 Conversion complete. MP3 saved at: ./music/music_title.mp3
-```
 ## 💁 References
 - [**yt-dlp**](https://github.com/yt-dlp/yt-dlp) is a youtube-dl fork with additional features and fixes. It's used for downloading and converting videos.
 - [**FFmpeg**](https://ffmpeg.org/) is a complete, cross-platform solution to record, convert and stream audio and video. `yt-dlp` uses it for post-processing.
 
 ## 📝 Todo
 - [x] **Added progress bar (via yt-dlp's native output)**
+- [x] **Playlist Support**
+- [x] **Automatic Title Extraction**
+- [x] **Metadata Embedding**
+- [x] **Format and Quality Selection**
+- [x] **Duplicate Song Check**
+- [x] **Interactive Mode**
 - [ ] **Add multiple URL via command**
 - [ ] **Add multiple URL in a one list e.q `music_list.txt`**
- 
 
 ## 👨🏾‍⚖️ License
 This project is under terms of the [MIT License](LICENSE). For fixing Bugs, create [issue](https://github.com/l0n3m4n/yt2mp3/issues/new)
