@@ -58,6 +58,7 @@ pip install -r requirements.txt
 ```
 
 ## ⚙️ Usage
+![usage_gif](assets/yt2mp3.gif)
 ```bash
 $ python3 yt2mp3.py --help
 
@@ -109,8 +110,8 @@ Examples:
 - [x] **Format and Quality Selection**
 - [x] **Duplicate Song Check**
 - [x] **Interactive Mode**
-- [ ] **Add multiple URL via command**
-- [ ] **Add multiple URL in a one list e.q `music_list.txt`**
+- [x] **Add multiple URL via command**
+- [x] **Add multiple URL in a one list e.q `music_list.txt`**
 
 ## 👨🏾‍⚖️ License
 This project is under terms of the [MIT License](LICENSE). For fixing Bugs, create [issue](https://github.com/l0n3m4n/yt2mp3/issues/new)

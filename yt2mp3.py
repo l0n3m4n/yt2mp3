@@ -61,13 +61,16 @@ class CustomFormatter(AlignedHelpFormatter, argparse.RawDescriptionHelpFormatter
         return f"{colors.BLUE}{super()._expand_help(action)}{colors.RESET}"
 
 
-def download_and_convert(url, output_dir, output_filename, audio_format, audio_quality):
+def download_and_convert(url, output_dir, output_filename, audio_format, audio_quality, verbose=False, download_playlist=False):
     try:
-        ydl_opts_info = {'quiet': True, 'no_warnings': True}
+        if '\\' in url:
+            url = url.replace('\\', '')
+        ydl_opts_info = {'quiet': not verbose, 'no_warnings': not verbose, 'noplaylist': not download_playlist}
         with yt_dlp.YoutubeDL(ydl_opts_info) as ydl:
             info_dict = ydl.extract_info(url, download=False)
 
-        print(f"{colors.CYAN}📥 Downloading and converting to {audio_format.upper()}{colors.RESET}")
+        if not verbose:
+            print(f"{colors.CYAN}📥 Downloading and converting to {audio_format.upper()}{colors.RESET}")
 
         is_playlist = info_dict.get('_type') == 'playlist'
 
@@ -112,6 +115,10 @@ def download_and_convert(url, output_dir, output_filename, audio_format, audio_q
             elif d['status'] == 'finished':
                 sys.stdout.write(f"\r{colors.CYAN}Download complete. Post-processing...{colors.RESET}\n")
                 sys.stdout.flush()
+        
+        progress_hooks = []
+        if not verbose:
+            progress_hooks.append(progress_hook)
 
         ydl_opts = {
             'format': 'bestaudio/best',
@@ -123,11 +130,12 @@ def download_and_convert(url, output_dir, output_filename, audio_format, audio_q
             'embedthumbnail': True,
             'addmetadata': True,
             'outtmpl': output_template,
-            'progress_hooks': [progress_hook],
-            'quiet': True,   
-            'no_warnings': True,
+            'progress_hooks': progress_hooks,
+            'quiet': not verbose,   
+            'no_warnings': not verbose,
             'extractor_args': {'youtube': {'player_client': ['default']}},
             'download_archive': 'downloaded.txt',
+            'noplaylist': not download_playlist,
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -156,13 +164,19 @@ def download_and_convert(url, output_dir, output_filename, audio_format, audio_q
         return False
 
 
-def main(url, output_filename, audio_format, audio_quality):
+def main(urls, output_filename, audio_format, audio_quality, verbose=False, download_playlist=False):
     output_dir = './music'
     os.makedirs(output_dir, exist_ok=True)
 
-    if not download_and_convert(url, output_dir, output_filename, audio_format, audio_quality):
-        print(f"{colors.RED}\nFailed to download and convert.{colors.RESET}")
-        return
+    if len(urls) > 1 and output_filename:
+        print(f"{colors.YELLOW}Warning: Multiple URLs provided with a single output name. The -o/--output flag will be ignored.{colors.RESET}")
+        output_filename = None
+
+    for url in urls:
+        if not download_and_convert(url, output_dir, output_filename, audio_format, audio_quality, verbose, download_playlist):
+            print(f"{colors.RED}\nFailed to download or convert: {url}{colors.RESET}")
+    
+    print(f"\n{colors.GREEN}All tasks complete.{colors.RESET}")
 
 
 if __name__ == "__main__":
@@ -195,41 +209,78 @@ if __name__ == "__main__":
 
   {colors.MAGENTA}Download a video in FLAC format with 320 quality:{colors.RESET}
     yt2mp3.py -u "https://www.youtube.com/watch?v=id" -f flac -q 320
+
+  {colors.MAGENTA}Download multiple videos from a text file:{colors.RESET}
+    yt2mp3.py -l url_list.txt
+
+  {colors.MAGENTA}Download multiple videos from the command line:{colors.RESET}
+    yt2mp3.py -u "https://youtu.be/id1" "https://youtu.be/id2"
+
+  {colors.MAGENTA}Download with verbose output for debugging:{colors.RESET}
+    yt2mp3.py -u "https://www.youtube.com/watch?v=id" -v
 """,
         formatter_class=CustomFormatter
     )
 
-    parser.add_argument('-u', '--url', type=str, help='YouTube video URL')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-u', '--url', type=str, nargs='+', help='One or more YouTube video URLs')
+    group.add_argument('-l', '--list-file', type=str, help='Path to a text file containing YouTube URLs (one per line)')
+
     parser.add_argument('-o', '--output', type=str, required=False, metavar='', help='Output filename for MP3 (default: video title)')
     parser.add_argument('-f', '--format', type=str, default='mp3', help='Audio format (e.g., mp3, flac, wav)')
     parser.add_argument('-q', '--quality', type=str, default='192', help='Audio quality (e.g., 192, 320)')
     parser.add_argument('-i', '--interactive', action='store_true', help='Enable interactive mode')
+    parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
+    parser.add_argument('-p', '--playlist', action='store_true', help='Download the entire playlist')
     args = parser.parse_args()
 
     if args.interactive:
         try:
-            url = input("Enter the YouTube URL: ")
-            if not url:
-                print(f"{colors.RED}URL cannot be empty.{colors.RESET}")
+            url_input = input("Enter one or more YouTube URLs (separated by spaces): ")
+            if not url_input:
+                print(f"{colors.RED}URL(s) cannot be empty.{colors.RESET}")
                 exit()
+            urls = url_input.split()
             
             output_filename = input("Enter the output filename (optional, press Enter for auto): ")
             audio_format = input("Enter the audio format (default: mp3): ") or 'mp3'
             audio_quality = input("Enter the audio quality (default: 192): ") or '192'
+            verbose = input("Enable verbose mode? (y/n): ").lower() == 'y'
+            playlist = input("Download entire playlist? (y/n): ").lower() == 'y'
 
-            main(url, output_filename, audio_format, audio_quality)
-
+            main(urls, output_filename, audio_format, audio_quality, verbose, playlist)
+            exit()
         except KeyboardInterrupt:
             print(f"\n{colors.RED}Process interrupted by user.{colors.RESET}")
+            exit()
         except Exception as e:
             print(f"\n{colors.RED}An error occurred: {e}{colors.RESET}")
+            exit()
 
-    elif args.url:
+    urls = []
+    if args.url:
+        urls = args.url
+    elif args.list_file:
         try:
-            main(args.url, args.output, args.format, args.quality)
-        except KeyboardInterrupt:
-            print(f"\n{colors.RED}Process interrupted by user.{colors.RESET}")
+            with open(args.list_file, 'r') as f:
+                urls = [line.strip() for line in f if line.strip()]
+            if not urls:
+                print(f"{colors.YELLOW}Warning: The file '{args.list_file}' is empty.{colors.RESET}")
+                exit()
+        except FileNotFoundError:
+            print(f"{colors.RED}Error: The file '{args.list_file}' was not found.{colors.RESET}")
+            exit(1)
         except Exception as e:
-            print(f"\n{colors.RED}An error occurred: {e}{colors.RESET}")
-    else:
+            print(f"{colors.RED}Error reading file '{args.list_file}': {e}{colors.RESET}")
+            exit(1)
+    
+    if not urls:
         parser.print_help()
+        exit()
+
+    try:
+        main(urls, args.output, args.format, args.quality, args.verbose, args.playlist)
+    except KeyboardInterrupt:
+        print(f"\n{colors.RED}Process interrupted by user.{colors.RESET}")
+    except Exception as e:
+        print(f"\n{colors.RED}An error occurred: {e}{colors.RESET}")
